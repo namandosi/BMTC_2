@@ -3,6 +3,7 @@ package myapp.bmtc.com.bmtc_2;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -42,6 +43,72 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Id to identity READ_CONTACTS permission request.
      */
+
+    EditText Phone,Pass;
+    myDbAdapter helper;
+    public void login(View view)
+    {
+        String t1 = Phone.getText().toString();
+//        String t2 = Dob.getText().toString();
+//        String t3 = Num.getText().toString();
+        String t4 = Pass.getText().toString();
+//        System.out.println(t1+" "+t4);
+        if(t1.isEmpty() ||  t4.isEmpty() )
+        {
+            Message.message(getApplicationContext(),"Enter all details.");
+        }
+        else if(t1.equals("0") && t4.equals("admin"))
+        {
+//            System.out.println("Admin");
+            Message.message(getApplicationContext(),"Admin");
+            Intent intent = new Intent(LoginActivity.this,Admin.class);
+            startActivity(intent);
+            Phone.setText("");
+//                Dob.setText("");
+            Pass.setText("");
+        }
+        else if(t1.length()!=10){
+            Message.message(getApplicationContext(),"Invalid phone number.");
+            Phone.setText("");
+//                Dob.setText("");
+            Pass.setText("");
+        }
+        else
+        {
+            long id = helper.checkData(t1,t4);
+            if(id<=0) {
+                long e = helper.checkPhone(t1);
+                Phone.setText("");
+//                Dob.setText("");
+                Pass.setText("");
+//                System.out.println(e);
+                if (e <= 0) {
+                    // no user with this phone number
+                    Intent intent = new Intent(LoginActivity.this, register.class);
+                    startActivity(intent);
+                } else {
+                    Message.message(getApplicationContext(), "Error. Incorrect phone number or password.");
+                    Phone.setText("");
+//                Dob.setText("");
+                    Pass.setText("");
+
+//                Num.setText("");
+                }
+            }
+            else
+            {
+
+                Message.message(getApplicationContext(),"Login successful.");
+
+
+
+//                Num.setText("");
+            }
+        }
+    }
+
+
+
     private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
@@ -66,32 +133,35 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Phone = (EditText) findViewById(R.id.phone);
+        Pass = (EditText) findViewById(R.id.password);
+        helper= new myDbAdapter(this);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+//        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+//        populateAutoComplete();
+//
+//        mPasswordView = (EditText) findViewById(R.id.password);
+//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+//                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+//                    attemptLogin();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+//
+//        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+//        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                attemptLogin();
+//            }
+//        });
+//
+//        mLoginFormView = findViewById(R.id.login_form);
+//        mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {

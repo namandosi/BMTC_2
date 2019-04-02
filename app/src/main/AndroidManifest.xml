@@ -37,7 +37,15 @@
             android:label="@string/title_activity_booking_history"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".bookTicket" />
-        <activity android:name=".profile"></activity>
+        <activity android:name=".profile" />
+        <activity android:name=".normalBooking" />
+        <activity android:name=".passBook" />
+        <activity android:name=".quickBook" />
+        <activity android:name=".register" />
+        <activity
+            android:name=".Admin"
+            android:label="@string/title_activity_admin"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
