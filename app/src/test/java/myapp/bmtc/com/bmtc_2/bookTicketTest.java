@@ -12,7 +12,7 @@ public class bookTicketTest {
 
     @Test
     public void onCreate() {
-        assertEquals(3,2+2);
+        assertEquals(4,2+2);
     }
 
     @Test
