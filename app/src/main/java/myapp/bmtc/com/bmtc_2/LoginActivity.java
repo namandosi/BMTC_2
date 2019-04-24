@@ -30,6 +30,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +52,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     myDbAdapter helper;
     public void login(View view)
     {
-        String t1 = Phone.getText().toString();
+        final String t1 = Phone.getText().toString();
 //        String t2 = Dob.getText().toString();
 //        String t3 = Num.getText().toString();
-        String t4 = Pass.getText().toString();
+        final String t4 = Pass.getText().toString();
 //        System.out.println(t1+" "+t4);
         if(t1.isEmpty() ||  t4.isEmpty() )
         {
@@ -75,35 +79,88 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         else
         {
-            long id = helper.checkData(t1,t4);
-            if(id<=0) {
-                long e = helper.checkPhone(t1);
-                Phone.setText("");
-//                Dob.setText("");
-                Pass.setText("");
-//                System.out.println(e);
-                if (e <= 0) {
-                    // no user with this phone number
-                    Intent intent = new Intent(LoginActivity.this, register.class);
-                    startActivity(intent);
-                } else {
-                    Message.message(getApplicationContext(), "Error. Incorrect phone number or password.");
-                    Phone.setText("");
-//                Dob.setText("");
-                    Pass.setText("");
 
-//                Num.setText("");
+
+            Thread thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    try  {
+                        //URL url = new URL("https://c9a360f8.ngrok.io/yourpath?name="+name+"&username="+username+"&password="+password+"&age="+age);
+                        URL url2 = new URL("http://namandosi.000webhostapp.com/login.php?phone="+t1);
+                        HttpURLConnection con = (HttpURLConnection) url2.openConnection();
+                        con.setRequestMethod("GET");
+                        System.out.println("In login onClick-45");
+                        int status = con.getResponseCode();
+                        System.out.println(status);
+                        System.out.println("In onClick-46");
+
+                        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                        StringBuilder total = new StringBuilder();
+                        String line;
+                        while ((line=in.readLine())!=null)
+                        {
+                            total.append(line);
+                        }
+
+                        System.out.println("total = "+total.toString());
+
+                        if(t4.equals(total.toString()))
+                        {
+//                            System.out.println("Yes man we did it...");
+                            Intent intent = new Intent(LoginActivity.this, home.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            System.out.println("wrong password");
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("In onClick-47");
+                        System.out.println(e);
+                        e.printStackTrace();
+                    }
                 }
-            }
-            else
-            {
+            });
 
-                Message.message(getApplicationContext(),"Login successful.");
+            thread.start();
 
 
 
-//                Num.setText("");
-            }
+
+
+
+
+//            long id = helper.checkData(t1,t4);
+//            if(id<=0) {
+//                long e = helper.checkPhone(t1);
+//                Phone.setText("");
+////                Dob.setText("");
+//                Pass.setText("");
+////                System.out.println(e);
+//                if (e <= 0) {
+//                    // no user with this phone number
+//                    Intent intent = new Intent(LoginActivity.this, register.class);
+//                    startActivity(intent);
+//                } else {
+//                    Message.message(getApplicationContext(), "Error. Incorrect phone number or password.");
+//                    Phone.setText("");
+////                Dob.setText("");
+//                    Pass.setText("");
+//
+////                Num.setText("");
+//                }
+//            }
+//            else
+//            {
+//
+//                Message.message(getApplicationContext(),"Login successful.");
+//
+//
+//
+////                Num.setText("");
+//            }
         }
     }
 

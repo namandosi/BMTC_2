@@ -20,7 +20,7 @@ import android.widget.Button;
 public class home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    Button login,bookTicket,bookingHistory,trackLocation,myWallet,profile,help;
+    Button login,bookTicket,bookingHistory,trackLocation,myWallet,profile,help,register;
 
 
     @Override
@@ -55,6 +55,7 @@ public class home extends AppCompatActivity
         trackLocation = (Button) findViewById(R.id.trackLocation);
         myWallet = (Button) findViewById(R.id.myWallet);
         help = (Button) findViewById(R.id.help);
+        register=(Button) findViewById(R.id.register);
 
         login.setOnClickListener(this);
         profile.setOnClickListener(this);
@@ -63,6 +64,7 @@ public class home extends AppCompatActivity
         trackLocation.setOnClickListener(this);
         myWallet.setOnClickListener(this);
         help.setOnClickListener(this);
+        register.setOnClickListener(this);
 
 
         Log.d("tag","In onCreate");
@@ -130,6 +132,14 @@ public class home extends AppCompatActivity
             case R.id.help :
                 Intent intent_help = new Intent(home.this, help.class);
                 startActivity(intent_help);
+
+                Log.i("tag","button pushed2");
+                // textView.setText("Help");
+                break;
+
+            case R.id.register :
+                Intent intent_register = new Intent(home.this, RegisterActivity.class);
+                startActivity(intent_register);
 
                 Log.i("tag","button pushed2");
                 // textView.setText("Help");

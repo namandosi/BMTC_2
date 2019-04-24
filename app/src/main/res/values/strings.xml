@@ -44,6 +44,18 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string-array name="StartBusStops">
+        <item>Ecity</item>
+    </string-array>
+    <string-array name="StopBusStops">
+        <item>SilkBoard</item>
+        <item>Kormangla</item>
+    </string-array>
+    <string-array name="BusRoutes">
+        <item>356cw</item>
+        <item>356c</item>
+        <item>G3</item>
+    </string-array>
     <string name="title_activity_help">help</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
