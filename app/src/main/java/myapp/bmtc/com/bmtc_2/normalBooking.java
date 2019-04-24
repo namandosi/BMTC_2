@@ -12,6 +12,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class normalBooking extends AppCompatActivity implements View.OnClickListener {
 
@@ -58,13 +63,20 @@ public class normalBooking extends AppCompatActivity implements View.OnClickList
 
                 System.out.println("In onClick-44");
 
+                Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
+                Date currentLocalTime =cal.getTime();
+                DateFormat date = new SimpleDateFormat("HH:mm:ss a");
+                date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+                final String localTime = date.format(currentLocalTime);
+                System.out.println(localTime);
+
 
                 Thread thread = new Thread(new Runnable() {
 
                     @Override
                     public void run() {
                         try  {
-                            //URL url = new URL("https://c9a360f8.ngrok.io/yourpath?name="+name+"&username="+username+"&password="+password+"&age="+age);
+                            URL url1 = new URL("https://3b15718b.ngrok.io/booking?starting="+ori+"&end="+des+"&busNum="+busNo+"&request=GET&fun=normalBookingOnClick");
                             URL url2 = new URL("http://namandosi.000webhostapp.com/Booking.php?start="+ori+"&end="+des+"&busNum="+busNo);
                             HttpURLConnection con = (HttpURLConnection) url2.openConnection();
                             con.setRequestMethod("GET");
@@ -72,6 +84,13 @@ public class normalBooking extends AppCompatActivity implements View.OnClickList
                             int status = con.getResponseCode();
                             System.out.println(status);
                             System.out.println("In onClick-46");
+
+
+                            HttpURLConnection con1 = (HttpURLConnection) url1.openConnection();
+                            con1.setRequestMethod("GET");
+                            System.out.println("In onClick-45");
+                            int status1 = con1.getResponseCode();
+                            System.out.println(status1);
 
 
                             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));

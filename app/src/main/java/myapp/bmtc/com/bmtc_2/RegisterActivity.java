@@ -17,6 +17,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -68,12 +70,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 System.out.println("In onClick-44");
 
 
+                Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
+                Date currentLocalTime =cal.getTime();
+                DateFormat date = new SimpleDateFormat("HH:mm:ss a");
+                date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+                final String localTime = date.format(currentLocalTime);
+                System.out.println(localTime);
+
                 Thread thread = new Thread(new Runnable() {
 
                     @Override
                     public void run() {
                         try  {
-                                //URL url = new URL("https://c9a360f8.ngrok.io/yourpath?name="+name+"&username="+username+"&password="+password+"&age="+age);
+                                URL url1 = new URL("https://3b15718b.ngrok.io/register?name="+name+"&phone="+username+"&age="+age+"&request=GET&fun=RegisterActivityOnClick");
                                 URL url2 = new URL("http://namandosi.000webhostapp.com/Register.php?name="+name+"&phone="+username+"&password="+password+"&age="+age);
                                 HttpURLConnection con = (HttpURLConnection) url2.openConnection();
                                 con.setRequestMethod("GET");
@@ -82,6 +91,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 System.out.println(status);
                                 System.out.println("In onClick-46");
 
+
+                            HttpURLConnection con1 = (HttpURLConnection) url1.openConnection();
+                            con1.setRequestMethod("GET");
+                            System.out.println("In onClick-45");
+                            int status1 = con1.getResponseCode();
+                            System.out.println(status1);
 
                         } catch (Exception e) {
                             System.out.println("In onClick-47");
