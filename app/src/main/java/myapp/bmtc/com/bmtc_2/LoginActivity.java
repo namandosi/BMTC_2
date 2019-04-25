@@ -87,7 +87,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void run() {
                     try  {
                         //URL url = new URL("https://c9a360f8.ngrok.io/yourpath?name="+name+"&username="+username+"&password="+password+"&age="+age);
-                        URL url2 = new URL("http://namandosi.000webhostapp.com/login.php?phone="+t1);
+                        //URL url2 = new URL("http://namandosi.000webhostapp.com/login.php?phone="+t1);
+                        URL url2 = new URL("http://anaghav.000webhostapp.com/login.php?phone="+t1);
                         HttpURLConnection con = (HttpURLConnection) url2.openConnection();
                         con.setRequestMethod("GET");
                         System.out.println("In login onClick-45");
@@ -108,7 +109,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         if(t4.equals(total.toString()))
                         {
 //                            System.out.println("Yes man we did it...");
-                            Intent intent = new Intent(LoginActivity.this, home.class);
+                            Intent intent = new Intent(LoginActivity.this, login_home.class);
+                            Bundle bundle = new Bundle();
+
+                            //Add your data to bundle
+                            bundle.putString("username", t1);
+
+                            //Add the bundle to the intent
+                            intent.putExtras(bundle);
+
+                            //Fire that second activity
+//                            startActivity(i);
                             startActivity(intent);
                         }
                         else

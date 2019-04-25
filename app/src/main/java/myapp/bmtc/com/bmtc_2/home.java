@@ -49,21 +49,21 @@ public class home extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         login = (Button) findViewById(R.id.login);
-        profile = (Button) findViewById(R.id.profile);
-        bookTicket = (Button) findViewById(R.id.bookTicket);
-        bookingHistory = (Button) findViewById(R.id.bookingHistory);
-        trackLocation = (Button) findViewById(R.id.trackLocation);
-        myWallet = (Button) findViewById(R.id.myWallet);
-        help = (Button) findViewById(R.id.help);
+//        profile = (Button) findViewById(R.id.profile);
+//        bookTicket = (Button) findViewById(R.id.bookTicket);
+//        bookingHistory = (Button) findViewById(R.id.bookingHistory);
+//        trackLocation = (Button) findViewById(R.id.trackLocation);
+//        myWallet = (Button) findViewById(R.id.myWallet);
+//        help = (Button) findViewById(R.id.help);
         register=(Button) findViewById(R.id.register);
 
         login.setOnClickListener(this);
-        profile.setOnClickListener(this);
-        bookingHistory.setOnClickListener(this);
-        bookTicket.setOnClickListener(this);
-        trackLocation.setOnClickListener(this);
-        myWallet.setOnClickListener(this);
-        help.setOnClickListener(this);
+//        profile.setOnClickListener(this);
+//        bookingHistory.setOnClickListener(this);
+//        bookTicket.setOnClickListener(this);
+//        trackLocation.setOnClickListener(this);
+//        myWallet.setOnClickListener(this);
+//        help.setOnClickListener(this);
         register.setOnClickListener(this);
 
 
@@ -89,53 +89,53 @@ public class home extends AppCompatActivity
                 //textView.setText("Login");
                 break;
 
-            case R.id.profile :
-                Intent intent = new Intent(home.this,profile.class);
-                startActivity(intent);
-
-                Log.i("tag","button pushed2");
-                // textView.setText("Profile");
-                break;
-
-            case R.id.bookingHistory :
-                Intent intent_booking_history = new Intent(home.this,bookingHistory.class);
-                startActivity(intent_booking_history);
-
-                Log.i("tag","button pushed2");
-                // textView.setText("Booking History");
-                break;
-
-            case R.id.bookTicket :
-                Intent intent_bookTicket = new Intent(home.this, bookTicket.class);
-                startActivity(intent_bookTicket);
-
-                Log.i("tag","button pushed2");
-                // textView.setText("Book Ticket");
-                break;
-
-            case R.id.myWallet :
-                Intent intent_wallet = new Intent(Intent.ACTION_VIEW, Uri.parse("https://paytm.com/"));
-                startActivity(intent_wallet);
-
-                Log.i("tag","button pushed2");
-                // textView.setText("My Wallet");
-                break;
-
-            case R.id.trackLocation :
-                Intent intent_location = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:12.8447512,77.6610377,17?z=16"));
-                startActivity(intent_location);
-
-                Log.i("tag","button pushed2");
-                // textView.setText("Track Location");
-                break;
-
-            case R.id.help :
-                Intent intent_help = new Intent(home.this, help.class);
-                startActivity(intent_help);
-
-                Log.i("tag","button pushed2");
-                // textView.setText("Help");
-                break;
+//            case R.id.profile :
+//                Intent intent = new Intent(home.this,profile.class);
+//                startActivity(intent);
+//
+//                Log.i("tag","button pushed2");
+//                // textView.setText("Profile");
+//                break;
+//
+//            case R.id.bookingHistory :
+//                Intent intent_booking_history = new Intent(home.this,bookingHistory.class);
+//                startActivity(intent_booking_history);
+//
+//                Log.i("tag","button pushed2");
+//                // textView.setText("Booking History");
+//                break;
+//
+//            case R.id.bookTicket :
+//                Intent intent_bookTicket = new Intent(home.this, bookTicket.class);
+//                startActivity(intent_bookTicket);
+//
+//                Log.i("tag","button pushed2");
+//                // textView.setText("Book Ticket");
+//                break;
+//
+//            case R.id.myWallet :
+//                Intent intent_wallet = new Intent(Intent.ACTION_VIEW, Uri.parse("https://paytm.com/"));
+//                startActivity(intent_wallet);
+//
+//                Log.i("tag","button pushed2");
+//                // textView.setText("My Wallet");
+//                break;
+//
+//            case R.id.trackLocation :
+//                Intent intent_location = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:12.8447512,77.6610377,17?z=16"));
+//                startActivity(intent_location);
+//
+//                Log.i("tag","button pushed2");
+//                // textView.setText("Track Location");
+//                break;
+//
+//            case R.id.help :
+//                Intent intent_help = new Intent(home.this, help.class);
+//                startActivity(intent_help);
+//
+//                Log.i("tag","button pushed2");
+//                // textView.setText("Help");
+//                break;
 
             case R.id.register :
                 Intent intent_register = new Intent(home.this, RegisterActivity.class);

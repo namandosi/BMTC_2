@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
@@ -22,6 +23,7 @@ public class normalBooking extends AppCompatActivity implements View.OnClickList
 
     Button route;
     Spinner start, stop,busroute;
+    String phonenum;
 //    EditText origin;
 //    EditText dest;
 //    EditText bus;
@@ -52,7 +54,8 @@ public class normalBooking extends AppCompatActivity implements View.OnClickList
     public void onClick(final View view) {
         switch (view.getId()) {
             case R.id.button:
-
+                phonenum=getIntent().getStringExtra("username");
+                System.out.println(phonenum);
                 System.out.println("In onClick-4");
                 final String ori = start.getSelectedItem().toString();
                 System.out.println("In onClick-41");
@@ -60,12 +63,12 @@ public class normalBooking extends AppCompatActivity implements View.OnClickList
                 System.out.println("In onClick-42");
                 final String busNo = busroute.getSelectedItem().toString();
                 System.out.println("In onClick-43");
-
+                final String phoneNum = phonenum;
                 System.out.println("In onClick-44");
 
                 Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
                 Date currentLocalTime =cal.getTime();
-                DateFormat date = new SimpleDateFormat("HH:mm:ss a");
+                DateFormat date = new SimpleDateFormat("yyyy-MM-dd%20HH:mm:ss");
                 date.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
                 final String localTime = date.format(currentLocalTime);
                 System.out.println(localTime);
@@ -76,8 +79,16 @@ public class normalBooking extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void run() {
                         try  {
-                            URL url1 = new URL("https://3b15718b.ngrok.io/booking?starting="+ori+"&end="+des+"&busNum="+busNo+"&request=GET&fun=normalBookingOnClick");
-                            URL url2 = new URL("http://namandosi.000webhostapp.com/Booking.php?start="+ori+"&end="+des+"&busNum="+busNo);
+                            //URL url1 = new URL("https://3b15718b.ngrok.io/booking?starting="+ori+"&end="+des+"&busNum="+busNo+"&request=GET&fun=normalBookingOnClick");
+                            URL url1 = new URL("https://d3521ba1.ngrok.io/booking");
+                            System.out.println(phoneNum);
+
+                           // URL url2 = new URL("http://namandosi.000webhostapp.com/Booking.php?start=Ecity&end=SilkBoard&busNum=356cw&phone=9900487369&dtime=2019-04-25 00:00:00");//+localTime);
+                            //URL url2 = new URL("http://namandosi.000webhostapp.com/Booking.php?start="+ori+"&end="+des+"&busNum="+busNo+"&phone="+phoneNum+"&dtime="+localTime);
+                            URL url2 = new URL("http://anaghav.000webhostapp.com/Booking.php?start="+ori+"&end="+des+"&busNum="+busNo+"&phone="+phoneNum+"&dtime="+localTime);
+
+
+                            //URL url2 = new URL("http://namandosi.000webhostapp.com/Booking.php?start="+ori+"&end="+des+"&busNum="+busNo);
                             HttpURLConnection con = (HttpURLConnection) url2.openConnection();
                             con.setRequestMethod("GET");
                             System.out.println("In onClick-45");
@@ -87,8 +98,17 @@ public class normalBooking extends AppCompatActivity implements View.OnClickList
 
 
                             HttpURLConnection con1 = (HttpURLConnection) url1.openConnection();
-                            con1.setRequestMethod("GET");
+                            con1.setDoOutput(true);
+                            con1.setRequestMethod("POST");
                             System.out.println("In onClick-45");
+
+
+                            String param = "starting="+ori+"&end="+des+"&busNum="+busNo+"&request=POST&fun=normalBookingOnClick";
+                            OutputStream os = con1.getOutputStream();
+                            os.write(param.getBytes());
+                            os.flush();
+                            os.close();
+
                             int status1 = con1.getResponseCode();
                             System.out.println(status1);
 

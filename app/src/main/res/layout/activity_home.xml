@@ -46,53 +46,6 @@
 
             />
 
-        <Button
-            android:id="@+id/bookTicket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="book Ticket"
-            />
-
-
-        <Button
-            android:id="@+id/bookingHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="booking History"
-
-            />
-
-        <Button
-            android:id="@+id/trackLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="track Location"
-
-            />
-
-        <Button
-            android:id="@+id/myWallet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="my Wallet"
-
-            />
-
-        <Button
-            android:id="@+id/profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="profile"
-
-            />
-
-        <Button
-            android:id="@+id/help"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="help"
-
-            />
 
         <Button
             android:id="@+id/register"

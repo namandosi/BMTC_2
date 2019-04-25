@@ -11,6 +11,7 @@ import android.widget.Button;
 public class bookTicket extends AppCompatActivity implements View.OnClickListener{
 
     Button quickBooking, normalBooking, passBook;
+    String phonenum;
 
 
 
@@ -37,7 +38,11 @@ public class bookTicket extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case R.id.normal :
+                phonenum=getIntent().getStringExtra("username");
                 Intent intent_normal = new Intent(bookTicket.this,normalBooking.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("username", phonenum);
+                intent_normal.putExtras(bundle);
                 startActivity(intent_normal);
                 break;
 

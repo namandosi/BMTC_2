@@ -82,8 +82,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void run() {
                         try  {
-                                URL url1 = new URL("https://3b15718b.ngrok.io/register?name="+name+"&phone="+username+"&age="+age+"&request=GET&fun=RegisterActivityOnClick");
-                                URL url2 = new URL("http://namandosi.000webhostapp.com/Register.php?name="+name+"&phone="+username+"&password="+password+"&age="+age);
+                                //URL url1 = new URL("https://3b15718b.ngrok.io/register?name="+name+"&phone="+username+"&age="+age+"&request=GET&fun=RegisterActivityOnClick");
+                                //URL url2 = new URL("http://namandosi.000webhostapp.com/Register.php?name="+name+"&phone="+username+"&password="+password+"&age="+age);
+                                URL url2 = new URL("http://anaghav.000webhostapp.com/Register.php?name="+name+"&phone="+username+"&password="+password+"&age="+age);
                                 HttpURLConnection con = (HttpURLConnection) url2.openConnection();
                                 con.setRequestMethod("GET");
                                 System.out.println("In onClick-45");
@@ -92,11 +93,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 System.out.println("In onClick-46");
 
 
-                            HttpURLConnection con1 = (HttpURLConnection) url1.openConnection();
-                            con1.setRequestMethod("GET");
-                            System.out.println("In onClick-45");
-                            int status1 = con1.getResponseCode();
-                            System.out.println(status1);
+//                            HttpURLConnection con1 = (HttpURLConnection) url1.openConnection();
+//                            con1.setRequestMethod("GET");
+//                            System.out.println("In onClick-45");
+//                            int status1 = con1.getResponseCode();
+//                            System.out.println(status1);
 
                         } catch (Exception e) {
                             System.out.println("In onClick-47");
