@@ -1,3 +1,2 @@
 # BMTC_2
-jenkins pipeline testing
--naman rachit anagha utkarsh.
+-by naman rachit anagha utkarsh.
